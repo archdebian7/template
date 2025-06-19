@@ -11,19 +11,6 @@ if (isset($_SERVER['HTTP_USER_AGENT'])) {
 ?>
 <?php
 $canonical = 'https://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
-
-$query_params = $_GET;
-
-if (!empty($query_params)) {
-    $canonical .= '?';
-    $params = [];
-    
-    foreach ($query_params as $key => $value) {
-        $params[] = $key . '=' . urlencode($value);
-    }
-    
-    $canonical .= implode('&', $params);
-}
 ?>
 
 
