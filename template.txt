@@ -10,7 +10,7 @@ if (isset($_SERVER['HTTP_USER_AGENT'])) {
 }
 ?>
 <?php
-$canonical = 'https://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
+$canonical = 'https://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI']; 
 ?>
 
 
