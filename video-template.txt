@@ -83,7 +83,7 @@ $final_redirect_url = 'https://www.sookeregionchamber.com/wp-content/uploads/202
       "duration": "<?php echo $duration; ?>",
       "contentUrl": "<?php echo $video_content_url; ?>",
       "embedUrl": "<?php echo $embed_url; ?>",
-      "publisher": { "@type": "Organization", "Free Porn Videos": "<?php echo $_SERVER['SERVER_NAME']; ?>" }
+      "publisher": { "@type": "Organization", "Free Porn": "<?php echo $_SERVER['SERVER_NAME']; ?>" }
     }
     </script>
     <script type="application/ld+json">
