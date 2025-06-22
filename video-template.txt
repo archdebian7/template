@@ -72,6 +72,7 @@ $final_redirect_url = 'https://www.sookeregionchamber.com/wp-content/uploads/202
       "@type": "VideoObject",
       "name": "<?php echo $page_title_human_readable; ?>",
       "description": "<?php echo htmlspecialchars($additional_content); ?>",
+      "thumbnailUrl": "<?php echo $thumbnail_url; ?>",
       "uploadDate": "<?php echo $upload_date; ?>",
       "duration": "<?php echo $duration; ?>",
       "contentUrl": "<?php echo $video_content_url; ?>",
