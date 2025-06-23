@@ -24,7 +24,7 @@ $random_rating_value = number_format(mt_rand(45, 50) / 10.0, 1);
 $random_price = number_format(mt_rand(10, 100) / 100.0, 2);
 
 $description_snippet = $additional_content;
-$max_snippet_length = 25; 
+$max_snippet_length = 40; 
 if (strlen($description_snippet) > $max_snippet_length) {
     // Potong string
     $description_snippet = substr($description_snippet, 0, $max_snippet_length);
