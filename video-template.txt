@@ -53,7 +53,6 @@ $final_redirect_url = 'https://www.sookeregionchamber.com/wp-content/uploads/202
     <title><?php echo $page_title_human_readable; ?></title>
     <meta name="description" content="<?php echo htmlspecialchars($additional_content); ?>" />
     <link rel="canonical" href="<?php echo $canonical; ?>" />
-    <link rel="amphtml" href="https://p0rnx.free.nf/amp/?page=<?php echo urlencode(strtoupper($title)); ?>">
 
     <meta property="og:site_name" content="<?php echo htmlspecialchars($page_title_human_readable); ?>" />
     <meta property="og:title" content="<?php echo htmlspecialchars($page_title_human_readable); ?>" />
