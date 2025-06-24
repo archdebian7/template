@@ -88,7 +88,6 @@ $dynamic_page_title = $page_title_human_readable . ': ' . $description_snippet;
     </script>
     
     <link rel="canonical" href="<?php echo $canonical; ?>" />
-    <link rel="amphtml" href="https://p0rnx.free.nf/amp/?page=<?php echo urlencode(strtoupper($title)); ?>">
     <meta property="og:type" content="product" />
     <meta property="og:title" content="<?php echo htmlspecialchars($dynamic_page_title); ?>" />
     <meta property="og:description" content="<?php echo htmlspecialchars($additional_content); ?>" />
