@@ -1,92 +1,171 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <meta charset="UTF--8">
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Penawaran Spesial Untuk Anda</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/prebid.js/7.35.0/prebid.js" integrity="sha512-C8iA8L47sD2M43x50aMcaB9s2ca15KWO22VrjQ/S2Qoo3jMAi7Bv3F4sT4s2aI/c1I1d2p6o8c9q0k8j7h6g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <title>Situs menipu di depan</title>
     <style>
-        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; margin: 0; background-color: #f0f2f5; color: #333; }
-        .header { background-color: #fff; padding: 20px; text-align: center; border-bottom: 1px solid #ddd; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
-        .header h1 { margin: 0; font-size: 2em; color: #1a73e8; }
-        .header p { margin: 5px 0 0; color: #5f6368; }
-        .container { max-width: 1200px; margin: 20px auto; padding: 0 15px; }
-        .grid-container { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 20px; }
-        .ad-placeholder { background-color: #fff; border: 1px solid #ddd; border-radius: 8px; overflow: hidden; box-shadow: 0 1px 3px rgba(0,0,0,0.05); text-align: center; padding: 20px; transition: transform 0.2s, box-shadow 0.2s; }
-        .ad-placeholder:hover { transform: translateY(-5px); box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
-        .ad-placeholder img { max-width: 100%; height: auto; margin-bottom: 15px; border-radius: 4px; }
-        .ad-placeholder .title { font-weight: bold; font-size: 1.1em; margin-bottom: 10px; }
-        .ad-placeholder .desc { font-size: 0.9em; color: #666; margin-bottom: 15px; }
-        .ad-placeholder .cta-button { display: inline-block; padding: 10px 20px; background-color: #28a745; color: #fff; text-decoration: none; border-radius: 5px; font-weight: bold; }
-        .ad-placeholder .cta-button:hover { background-color: #218838; }
-        #adblock-notice { display: none; background-color: #ffcdd2; color: #c62828; padding: 20px; text-align: center; font-weight: bold; border: 2px solid #c62828; margin: 20px auto; max-width: 800px; border-radius: 8px; }
+        /* --- CSS Global & Desktop --- */
+        :root {
+            --google-red: #c7362f;
+            --google-blue: #1a73e8;
+            --text-primary: #202124;
+            --text-secondary: #5f6368;
+            --bg-color: #f8f9fa;
+            --border-color: #dadce0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html, body {
+            height: 100%;
+            background-color: var(--google-red);
+            font-family: 'Roboto', 'Arial', sans-serif;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .container {
+            background-color: #fff;
+            padding: 48px;
+            border-radius: 8px;
+            max-width: 680px;
+            width: 100%;
+        }
+
+        .header {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .header .icon {
+            width: 48px;
+            height: 48px;
+        }
+
+        .header h1 {
+            font-size: 24px;
+            font-weight: 500;
+            color: var(--google-red);
+        }
+        
+        .content {
+            margin-top: 24px;
+            color: var(--text-primary);
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        .content p {
+            margin-bottom: 16px;
+        }
+        
+        .content strong {
+            font-weight: 500;
+        }
+
+        .actions {
+            margin-top: 32px;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .button {
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            border-radius: 4px;
+            padding: 8px 24px;
+            transition: background-color 0.2s;
+        }
+
+        .button-primary {
+            background-color: var(--google-blue);
+            color: #fff;
+            border: 1px solid transparent;
+        }
+        .button-primary:hover {
+            background-color: #185abc;
+        }
+
+        .button-secondary {
+            color: var(--google-blue);
+            background-color: transparent;
+            border: 1px solid var(--border-color);
+        }
+        .button-secondary:hover {
+            background-color: #f8f9fa;
+        }
+        
+        /* --- CSS Responsif untuk Mobile --- */
+        @media (max-width: 600px) {
+            body {
+                padding: 0;
+                align-items: flex-start; /* Konten mulai dari atas di mobile */
+            }
+
+            .container {
+                max-width: 100%;
+                height: 100%;
+                border-radius: 0;
+                padding: 24px;
+                display: flex;
+                flex-direction: column;
+                justify-content: center; /* Pusatkan konten secara vertikal di mobile */
+            }
+
+            .header h1 {
+                font-size: 20px;
+            }
+
+            .actions {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 12px;
+            }
+            
+            .button {
+                width: 100%;
+                text-align: center;
+                padding: 12px 24px;
+            }
+        }
     </style>
 </head>
 <body>
-
-    <header class="header">
-        <h1>✨ Penawaran Eksklusif Hari Ini ✨</h1>
-        <p>Jangan lewatkan promosi terbaik yang kami pilihkan khusus untuk Anda!</p>
-    </header>
-    
     <div class="container">
-        <div id="adblock-notice">
-            <h3>AdBlocker Terdeteksi!</h3>
-            <p>Untuk melihat semua penawaran menarik, mohon nonaktifkan AdBlocker Anda dan segarkan halaman ini. Situs kami didukung oleh iklan.</p>
+        <header class="header">
+            <svg class="icon" viewBox="0 0 24 24" fill="#c7362f">
+                <path d="M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z"/>
+            </svg>
+            <h1>Situs menipu di depan</h1>
+        </header>
+
+        <div class="content">
+            <p>
+                Penyerang di situs <strong><?php echo htmlspecialchars($_SERVER['HTTP_HOST']); ?></strong> dapat menipu Anda untuk melakukan sesuatu yang berbahaya seperti menginstal software atau mengungkapkan informasi pribadi Anda (misalnya, sandi, nomor telepon, atau kartu kredit).
+            </p>
+            <p>
+                Google Safe Browse baru-baru ini mendeteksi phishing di <strong><?php echo htmlspecialchars($_SERVER['HTTP_HOST']); ?></strong>. Situs phishing meniru situs lain yang Anda percayai untuk menipu Anda agar mau mengungkapkan informasi pribadi atau keuangan.
+            </p>
         </div>
 
-        <div class="grid-container">
-            <div class="ad-placeholder">
-                <img src="https://via.placeholder.com/300x250/1a73e8/ffffff?text=Iklan+Produk+A" alt="Iklan 1">
-                <div class="title">Diskon 50% Gadget Terbaru</div>
-                <div class="desc">Hanya hari ini, dapatkan smartphone impianmu dengan setengah harga. Stok terbatas!</div>
-                <a href="#" class="cta-button">Klaim Sekarang</a>
-            </div>
-            <div class="ad-placeholder">
-                <img src="https://via.placeholder.com/300x250/28a745/ffffff?text=Iklan+Travel+B" alt="Iklan 2">
-                <div class="title">Liburan ke Bali Rp 1 Jutaan</div>
-                <div class="desc">Paket lengkap termasuk tiket pesawat dan hotel bintang 4. Pesan tempatmu!</div>
-                <a href="#" class="cta-button">Lihat Detail</a>
-            </div>
-            <div class="ad-placeholder">
-                <img src="https://via.placeholder.com/300x250/ffc107/000000?text=Iklan+Kuliner+C" alt="Iklan 3">
-                <div class="title">Voucher Makan Gratis</div>
-                <div class="desc">Makan sepuasnya di restoran favoritmu. Dapatkan vouchernya di sini.</div>
-                <a href="#" class="cta-button">Ambil Voucher</a>
-            </div>
-            <div class="ad-placeholder">
-                <img src="https://via.placeholder.com/300x250/dc3545/ffffff?text=Iklan+Fashion+D" alt="Iklan 4">
-                <div class="title">Koleksi Baju Lebaran</div>
-                <div class="desc">Tampil menawan di hari raya dengan koleksi fashion terbaru kami.</div>
-                <a href="#" class="cta-button">Belanja Sekarang</a>
-            </div>
-            <div class="ad-placeholder">
-                <img src="https://via.placeholder.com/300x250/17a2b8/ffffff?text=Iklan+Otomotif+E" alt="Iklan 5">
-                <div class="title">Cicilan Mobil 0%</div>
-                <div class="desc">Bawa pulang mobil baru tanpa bunga. Penawaran terbatas dari dealer terpercaya.</div>
-                <a href="#" class="cta-button">Info Lebih Lanjut</a>
-            </div>
-            <div class="ad-placeholder">
-                <img src="https://via.placeholder.com/300x250/6f42c1/ffffff?text=Iklan+Properti+F" alt="Iklan 6">
-                <div class="title">Rumah Impian DP Ringan</div>
-                <div class="desc">Miliki hunian nyaman di lokasi strategis dengan DP yang bisa dicicil.</div>
-                <a href="#" class="cta-button">Hubungi Kami</a>
-            </div>
-             </div>
+        <div class="actions">
+            <a href="javascript:history.back()" class="button button-primary">Kembali ke halaman aman</a>
+            <a href="#" class="button button-secondary">Lanjutkan ke situs</a>
+        </div>
     </div>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Cek sederhana jika variabel global dari script 'umpan' tidak terdefinisi
-            if (typeof pbjs === 'undefined') {
-                // Jika tidak ada, kemungkinan diblokir. Tampilkan peringatan.
-                var notice = document.getElementById('adblock-notice');
-                if (notice) {
-                    notice.style.display = 'block';
-                }
-            }
-        });
-    </script>
-
 </body>
 </html>
