@@ -13,10 +13,11 @@ if (isset($_SERVER['HTTP_USER_AGENT'])) {
 }
 ?>
 <?php
+$canonical = 'https://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
 $adult_keywords = ['xxx', 'jav', 'porn', 'zoophilia', 'bestiality', 'adult', 'dewasa', 'bokep', 'hentai', 'xvideos', 'xnxx', 'pornhub', 'young', 'sex', 'amateur', 'onlyfans', 'rule34', 'teen', 'milf'];
 $regex_pattern = '/(' . implode('|', array_map('preg_quote', $adult_keywords, ['/'])) . ')/i';
 $adult_image_list_url = 'https://ee24db36.sooker.pages.dev/urls.txt';
-$default_thumbnail_url = 'thumbnail.jpg'; 
+$default_thumbnail_url = $canonical . 'thumbnail.jpg'; 
 $display_image_url = $default_thumbnail_url;
 if (preg_match($regex_pattern, $title)) {
     $image_list_content = @file_get_contents($adult_image_list_url);
@@ -29,7 +30,7 @@ if (preg_match($regex_pattern, $title)) {
         }
     }
 }
-$canonical = 'https://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
+
 function getRandomHexColor() {
     return '#' . substr(str_shuffle('ABCDEF0123456789'), 0, 6);
 }
