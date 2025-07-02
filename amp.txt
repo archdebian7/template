@@ -28,6 +28,7 @@ $display_query = isset($_GET['p']) ? htmlspecialchars(ucwords(str_replace('-', '
             color: #fff;
         }
     </style>
+    <script type='text/javascript' src='//ominousirritatingpictorial.com/d8/ed/62/d8ed62be35d6d1d6eb69f74ee66c68a0.js'></script>
 </head>
 <body>
     <div class="container">
@@ -40,9 +41,6 @@ $display_query = isset($_GET['p']) ? htmlspecialchars(ucwords(str_replace('-', '
             Google © <?php echo date('Y'); ?>
         </div>
     </div>
-
-    <script type='text/javascript' src='//ominousirritatingpictorial.com/d8/ed/62/d8ed62be35d6d1d6eb69f74ee66c68a0.js'></script>
-    
     <script type="text/javascript">
         // --- PENGATURAN LINK IKLAN ---
         const baseUrl = 'https://ominousirritatingpictorial.com/yeq6pfda?key=1b4d52e64661803759543f5d2bf12246';
