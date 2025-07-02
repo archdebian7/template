@@ -1,5 +1,4 @@
 <?php
-// PHP untuk mengambil query parameter (tetap sama)
 $tracking_query = isset($_GET['p']) ? urlencode($_GET['p']) : 'not_provided';
 $display_query = isset($_GET['p']) ? htmlspecialchars(ucwords(str_replace('-', ' ', $_GET['p']))) : 'Our Content';
 ?>
@@ -42,7 +41,6 @@ $display_query = isset($_GET['p']) ? htmlspecialchars(ucwords(str_replace('-', '
         </div>
     </div>
     <script type="text/javascript">
-        // --- PENGATURAN LINK IKLAN ---
         const baseUrl = 'https://ominousirritatingpictorial.com/yeq6pfda?key=1b4d52e64661803759543f5d2bf12246';
         const trackingQuery = '<?php echo $tracking_query; ?>';
         const redirectUrl = baseUrl + '&subid=' + trackingQuery;
