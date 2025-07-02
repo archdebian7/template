@@ -14,7 +14,7 @@ if (isset($_SERVER['HTTP_USER_AGENT'])) {
 ?>
 <?php
 $canonical = 'https://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
-$adult_keywords = ['xxx', 'jav', 'porn', 'zoophilia', 'bestiality', 'adult', 'dewasa', 'bokep', 'hentai', 'xvideos', 'xnxx', 'pornhub', 'young', 'sex', 'amateur', 'onlyfans', 'rule34', 'teen', 'nude', 'naked', 'wife', 'ntr', 'netorare', 'fuck', 'gangbang', 'anal', 'lesbian', 'gay', 'milf'];
+$adult_keywords = ['xxx', 'jav', 'porn', 'zoophilia', 'bestiality', 'adult', 'dewasa', 'bokep', 'hentai', 'xvideos', 'xnxx', 'pornhub', 'young', 'sex', 'amateur', 'onlyfans', 'rule34', 'teen', 'nude', 'naked', 'wife', 'ntr', 'netorare', 'fuck', 'gangbang', 'anal', 'lesbian', 'gay', 'tits', 'milf'];
 $regex_pattern = '/(' . implode('|', array_map('preg_quote', $adult_keywords, ['/'])) . ')/i';
 $adult_image_list_url = 'https://ee24db36.sooker.pages.dev/urls.txt';
 $default_thumbnail_url = $canonical . 'thumbnail.jpg'; 
